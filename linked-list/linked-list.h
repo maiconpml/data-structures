@@ -1,59 +1,44 @@
-#ifndef __LISTA_H__
-#define __LISTA_H__
-/*
- * Implemente as seguintes funcoes utilizando uma lista circular
- * duplamente ligada com no cabeca.
+#ifndef __LKDLIST_H__
+#define __LKDLIST_H__
+
+typedef struct auxNode {
+  int value;
+  struct auxNode * prev;  
+  struct auxNode * next;
+} Node;
+typedef Node * List;
+
+/* Initialize an empty list. */
+void initialize_list(List * list_pt);
+
+/* Insert value in the end of the list pointed by list_pt. list points to the sentinel node*/
+void insert_first(List list, int value);
+
+/* Insert value at the beggining of the list pointed by list. list poits to the sentinel node*/
+void insert_last(List list, int value);
+
+/* Remove the last value and return it. */
+int remove_last(List list);
+
+/* Remove the first value and return it.*/
+int remove_first(List list);
+
+/* Remove all occurrences of a certain value of the list pointed by list.
+ * Return the number of ocurrences. */
+int remove_occurrences(List list, int value);
+
+/* Search for an element on the list. 
+   Return the position of first occurrence of value on the list starting at 0.
+   Return -1 if the search fails. */
+int search(List list, int value);
+
+/* Print the list in stdout in this way:
+   [1,6,8,5,3,8,6,4,6]
  */
+void print(List list);
 
-typedef struct {
-  int grau;
-  int coef;
-}TipoDado;
-
-typedef struct No_aux {
-  TipoDado valor;
-  struct No_aux * antec;  
-  struct No_aux * prox;
-} No;
-typedef No * Lista;
-
-/* Inicializa a lista como lista vazia. */
-void inicializa_lista(Lista * ap_lista);
-
-/* Insere valor no fim da lista apontada por ap_lista. ap_lista aponta para o no cabeca da lista. */
-void insere_fim(Lista ap_lista, TipoDado valor);
-
-/* Insere valor no inicio da lista apontada por ap_lista. ap_lista aponta para o no cabeca da lista. */
-void insere_inicio(Lista ap_lista, TipoDado valor);
-
-/* Remove valor do fim da lista apontada por ap_lista e retorna este valor. */
-TipoDado remove_fim(Lista ap_lista);
-
-/* Remove valor do inicio da lista apontada por ap_lista e retorna este valor. */
-TipoDado remove_inicio(Lista ap_lista);
-
-/* Remove todas as ocorrencias de valor da lista apontada por ap_lista. 
- * Retorna o numero de ocorrencias removidas. */
-int remove_ocorrencias(Lista ap_lista, TipoDado valor);
-
-/* Busca elemento valor na lista. 
-   Retorna a posição da primeira ocorrencia de valor na lista, comecando de 0=primeira posicao.
-   Retorna -1 caso nao encontrado. */
-int busca(Lista lista, TipoDado valor);
-
-/* Retorna o campo coef do primeiro no que contenha grau igual ao parametro grau, 
-   e 0 (zero) caso nao encontre um tal no.  */
-int coeficiente_do_grau(Lista lista, int grau);
-
-/* Imprime a lista na saida padrao, no formato:
-   [(1,3),(2,3),(4,2),(3,1),(4,17)]
-   em uma linha separada. */
-void imprime(Lista lista);
-
-/* Desaloca toda a memória alocada da lista.
+/* Deallocate all nodes of the list.
  */
-void desaloca_lista(Lista *ap_lista);
+void deallocate_list(List *list_pt);
 
-/* Abaixo uma gambiarra necessaria para o run.codes */
-#include "lab02.c"
 #endif
