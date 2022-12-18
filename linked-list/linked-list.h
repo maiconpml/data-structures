@@ -1,44 +1,144 @@
-#ifndef __LKDLIST_H__
-#define __LKDLIST_H__
+#ifndef LINKEDLIST_H_INCLUDED
+#define LINKEDLIST_H_INCLUDED
 
-typedef struct auxNode {
-  int value;
-  struct auxNode * prev;  
-  struct auxNode * next;
-} Node;
-typedef Node * List;
+#include "iostream"
+using namespace std;
 
-/* Initialize an empty list. */
-void initialize_list(List * list_pt);
+class Node{
+ 
+    public:
+        
+        int value;
+        Node * prev;
+        Node * next;
 
-/* Insert value in the end of the list pointed by list_pt. list points to the sentinel node*/
-void insert_first(List list, int value);
+        Node(int newValue){
+            
+            value = newValue;
+        }
+};
 
-/* Insert value at the beggining of the list pointed by list. list poits to the sentinel node*/
-void insert_last(List list, int value);
+class linkedList{
 
-/* Remove the last value and return it. */
-int remove_last(List list);
+    public:
 
-/* Remove the first value and return it.*/
-int remove_first(List list);
+        Node* list;
 
-/* Remove all occurrences of a certain value of the list pointed by list.
- * Return the number of ocurrences. */
-int remove_occurrences(List list, int value);
+        linkedList(){
 
-/* Search for an element on the list. 
-   Return the position of first occurrence of value on the list starting at 0.
-   Return -1 if the search fails. */
-int search(List list, int value);
+            list = new Node(0);
+            list -> prev = list;
+            list -> next = list;
+        }
 
-/* Print the list in stdout in this way:
-   [1,6,8,5,3,8,6,4,6]
- */
-void print(List list);
+        void insert_first(const int value){
 
-/* Deallocate all nodes of the list.
- */
-void deallocate_list(List *list_pt);
+            Node * newNode = new Node(value);
+
+            newNode -> next = list -> next;
+            newNode -> prev = list;
+            list -> next -> prev = newNode;
+            list -> next = newNode;
+        }
+
+        void insert_last(const int value){
+
+            Node * newNode = new Node(value);
+
+            newNode -> next = list;
+            newNode -> prev = list -> prev;
+            list -> prev -> next = newNode;
+            list -> prev = newNode;
+        }
+
+        int remove_last(){
+
+            int removedVal = list -> prev -> value;
+
+            remove_node(list -> prev);
+
+            return removedVal;
+        }
+
+        int remove_first(){
+
+            int removedVal = list -> next -> value;
+            
+            remove_node(list -> next);
+
+            return removedVal;
+        }
+
+        int remove_occurrences(const int value){
+            
+            Node * currentNode = list -> next;
+            Node * auxPtr;
+            int occurrences = 0;
+
+            while(currentNode != list){
+
+                if(currentNode -> value == value){
+
+                    auxPtr = currentNode;
+                    currentNode = currentNode -> next;
+         
+                    occurrences++;
+         
+                    remove_node(auxPtr);
+                }else{
+                    
+                    currentNode = currentNode -> next;
+                }
+            }
+
+            return occurrences;
+        }
+
+        bool search(const int reqValue){
+
+            Node * currentNode = list -> next;
+            int position = 0;
+
+            while(currentNode != list){
+
+                if(currentNode -> value == reqValue) return position;
+                
+                currentNode = currentNode -> next;
+
+                position++;
+            }
+
+            return position;
+        }
+
+        void print(){
+
+            Node * currentNode = list -> next;
+            
+            cout << "(";
+
+            while(currentNode != list){
+
+                cout << currentNode -> value;
+
+                if(currentNode -> next != list) cout << ",";
+
+                currentNode = currentNode -> next;
+            }
+
+            cout << ")\n";
+        }
+    
+    private:
+
+        void remove_node(Node * nodePtr){
+
+            nodePtr -> prev -> next = nodePtr -> next;
+            nodePtr -> next -> prev = nodePtr -> prev;
+
+            delete(nodePtr);
+        }
+        
+};
 
 #endif
