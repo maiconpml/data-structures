@@ -4,8 +4,8 @@
 typedef enum{false, true} bool;
 
 typedef struct auxNode{
-    
-    int value, height;
+
+    int value;
     struct auxnode* left;
     struct auxNode* right;
 }Node;
