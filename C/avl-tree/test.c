@@ -28,4 +28,13 @@ int main(){
     remove_value(&tree1, 71);//a double rotation occurs after the remotion to maintain the tree balancing
     print(tree1);
 
+    if(search(tree1, 40)) printf("40: true\n");
+
+    else printf("40: false\n");
+
+    if(search(tree1, 71)) printf("71: true\n");
+
+    else printf("71: false\n");
+
+    return 0;
 }
