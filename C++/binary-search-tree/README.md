@@ -1,0 +1,1 @@
+A binary search tree is a tree in wich the nodes have a pointer to left and a pointer to right. The left pointer of the node points to a value less than the node value and the right pointer points to a value greater than the node value.
