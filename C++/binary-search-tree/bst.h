@@ -110,7 +110,7 @@ class BST{
             else return false;
         }
 
-        bool rec_remotion(Node ** nodePtrPtr, const int val){
+        bool rec_remotion(Node** nodePtrPtr, const int val){
 
             if(!(*nodePtrPtr)) return false;
 
