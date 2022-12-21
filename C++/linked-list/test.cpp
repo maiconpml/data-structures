@@ -26,7 +26,7 @@ int main(){
     list1.remove_last();
     list1.remove_last();
 
-    cout << list1.search(21) << endl;
+    cout << list1.index(21) << endl;
 
     list1.print();
 

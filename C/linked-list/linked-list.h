@@ -30,7 +30,7 @@ int remove_occurrences(List list, int value);
 /* Search for an element on the list. 
    Return the position of first occurrence of value on the list starting at 0.
    Return -1 if the search fails. */
-int search(List list, int value);
+int index(List list, int value);
 
 /* Print the list in stdout in this way:
    [1,6,8,5,3,8,6,4,6]

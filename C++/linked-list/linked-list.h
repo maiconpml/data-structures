@@ -94,7 +94,7 @@ class linkedList{
             return occurrences;
         }
 
-        bool search(const int reqValue){
+        bool index(const int reqValue){
 
             Node * currentNode = list -> next;
             int position = 0;

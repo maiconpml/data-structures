@@ -82,7 +82,7 @@ int remove_occurrences(List list, int value){
    return occurrences;
 }
 
-int search(List list, int value){
+int index(List list, int value){
 
    Node * currentNode = list -> next;
    int position = 0;
