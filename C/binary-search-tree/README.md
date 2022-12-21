@@ -8,3 +8,7 @@ This implementation contains these functions:
 - remove_node: removes a value from the list and returns a boolean indicating whether the removal occurred or not.
 - search: searches a value in the tree and returns a boolean indicating whether the value is in the list or not.
 - print: print the tree to stdout in pre-order and formated.
+
+Funtions to add in the future:
+
+- height: return the height of a given tree.
