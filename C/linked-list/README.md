@@ -9,15 +9,13 @@ This implementation contains these functions:
 - insert_last: inserts a value at the end of the list.
 - remove_last: removes the last value from the list and returns the removed value.
 - remove_occurrences: removes all occurrences of a value in the list and returns the number of occurrences.
-- index: return the index of a given element.
+- indexOf: return the index of a given element.
 - print: prints the list to stdout.
 - deallocate_list: deallocates the list making it an invalid list.
-
-Functions to add in the future:
-
 - clear_list: removes all elements from the list making the list an empty list.
 - insert_position: inserts a value at a given position and returns true or false if the insertion is successful or not.
 - remove_value: removes the first occurrence of a value in the list.
 - clone: return a copy of a given list.
-- last_index: return the index os a given element starting from last position.
-- convert_to_array: convert a list to an array and return its pointer;
+- last_indexOf: return the index of a given element starting from last position.
+- convert_to_array: convert a list to an array and return its pointer.
+- number_of_elem: return the number of elements in a given list.
