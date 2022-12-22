@@ -115,7 +115,20 @@ int remove_occurrences(List list, int value){
    return occurrences;
 }
 
-/* Return a copy of a given list.*/
+int number_of_elem(List list){
+
+   Node* nodePtr = list -> next;
+   int i = 0;
+
+   while(nodePtr != list){
+
+      nodePtr = nodePtr -> next;
+      i++;
+   }
+
+   return i;
+}
+
 Node* clone(List list){
 
    List newList;
@@ -133,14 +146,14 @@ Node* clone(List list){
    return newList;
 }
 
-int indexOf(List list, int value){
+int indexOf(List list, int val){
 
    Node * currentNode = list -> next;
    int position = 0;
 
    while(currentNode != list){
 
-      if(currentNode -> value == value) return position;
+      if(currentNode -> value == val) return position;
 
       currentNode = currentNode -> next;
 
@@ -148,6 +161,39 @@ int indexOf(List list, int value){
    }
 
    return -1;
+}
+
+int last_indexOf(List list, int val){
+
+   Node * currentNode = list -> prev;
+   int position = number_of_elem(list) - 1;
+
+   while(currentNode != list){
+
+      if(currentNode -> value == val) return position;
+
+      currentNode = currentNode -> prev;
+
+      position--;
+   }
+
+   return -1;
+}
+
+int* convert_to_array(List list){
+
+   int n = number_of_elem(list);
+   int* vec = (int*) malloc(sizeof(int));
+   Node* nodePtr = list -> next;
+
+   for(int i = 0; i < n; ++i){
+
+      vec[i] = nodePtr -> value;
+
+      nodePtr = nodePtr -> next;
+   }
+
+   return vec;
 }
 
 void print(List list){

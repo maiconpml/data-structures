@@ -35,15 +35,22 @@ bool remove_value(List list, int val);
  * Return the number of ocurrences. */
 int remove_occurrences(List list, int value);
 
+/* Returns the number of elements in a given list. */
+int number_of_elem(List list);
+
 /* Return a copy of a given list.*/
 Node* clone(List list);
 
 /* Search for an element on the list. 
    Return the position of first occurrence of value on the list starting at 0.
    Return -1 if the search fails. */
-int indexOf(List list, int value);
+int indexOf(List list, int val);
 
-int last_indexOf(List list, int value);
+/* Return the index of a given element starting from last position. */
+int last_indexOf(List list, int val);
+
+/* Convert a list to an array and return its pointer. */
+int* convert_to_array(List list);
 
 /* Print the list in stdout in this way:
    [1,6,8,5,3,8,6,4,6]

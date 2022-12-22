@@ -38,5 +38,16 @@ int main(){
 
     print(list2);
 
+    printf("last index of 897: %d\n", last_indexOf(list2, 897));
+
+    int* vect = convert_to_array(list2);
+    int n = number_of_elem(list2);
+
+    for(int i = 0; i < n; ++i){
+
+        printf("%d;", vect[i]);
+    }printf("\n");
+
     deallocate_list(&list1);
+    deallocate_list(&list2);
 }
