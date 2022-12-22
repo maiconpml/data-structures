@@ -19,5 +19,5 @@ Functions to add in the future:
 - insert_position: inserts a value at a given position and returns true or false if the insertion is successful or not.
 - remove_value: removes the first occurrence of a value in the list.
 - clone: return a copy of a given list.
-- last_index: return the index os a given element starting from last position.
+- last_index: return the index of a given element starting from last position.
 - convert_to_array: convert a list to an array and return its pointer;

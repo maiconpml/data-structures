@@ -10,26 +10,40 @@ void initialize_list(List * list_pt){
    (*list_pt) -> prev = *list_pt;
 }
 
+void insert_next(Node* nodePtr, int value){
+
+   Node* newNode = (Node*) malloc(sizeof(Node));
+
+   newNode -> value = value;
+   newNode -> prev = nodePtr;
+   newNode -> next = nodePtr -> next;
+   nodePtr -> next -> prev = newNode;
+   nodePtr -> next = newNode;
+}
+
 void insert_last(List list, int value){
    
-   Node * new_node = (Node *) malloc(sizeof(Node));
-
-   new_node -> value = value;
-   new_node -> prev = list -> prev;
-   new_node -> next = list;
-   list -> prev -> next = new_node;
-   list -> prev = new_node;
+   insert_next(list -> prev, value);
 }
 
 void insert_first(List list, int value){
 
-   Node * new_node = (Node *) malloc(sizeof(Node));
+   insert_next(list, value);
+}
 
-   new_node -> value = value;
-   new_node -> prev = list;
-   new_node -> next = list -> next;
-   list -> next -> prev = new_node;
-   list -> next = new_node;
+bool insert_position(List list, int value, int position){
+
+   Node* nodePtr = list;
+   int i = 0;
+
+   while(i < position && nodePtr -> next != list){
+
+      nodePtr = nodePtr -> next;
+      i++;
+   }
+
+   if(nodePtr -> next != list) insert_next(nodePtr, value);
+
 }
 
 void remove_node(Node * node_pt){
@@ -58,6 +72,25 @@ int remove_first(List list){
    return value;
 }
 
+bool remove_value(List list, int val){
+
+   Node* nodePtr = list;
+
+   while(nodePtr -> next != list){
+
+      if(nodePtr -> value == val){
+
+         remove_node(nodePtr);
+
+         return true;
+      }
+
+      nodePtr = nodePtr -> next;
+   }
+
+   return false;
+}
+
 int remove_occurrences(List list, int value){
 
    Node * currentNode = list -> next;
@@ -82,7 +115,25 @@ int remove_occurrences(List list, int value){
    return occurrences;
 }
 
-int index(List list, int value){
+/* Return a copy of a given list.*/
+Node* clone(List list){
+
+   List newList;
+   Node * nodePtr = list -> next;
+
+   initialize_list(&newList);
+
+   while(nodePtr != list){
+
+      insert_last(newList, nodePtr -> value);
+
+      nodePtr = nodePtr -> next;
+   }
+
+   return newList;
+}
+
+int indexOf(List list, int value){
 
    Node * currentNode = list -> next;
    int position = 0;
@@ -116,8 +167,13 @@ void print(List list){
    printf("]\n");
 }
 
-/* Desaloca toda a memória alocada da lista.
- */
+void clear_list(List list){
+
+   while(list ->  next != list){
+      remove_node(list -> prev);
+   }
+}
+
 void deallocate_list(List *list_pt){
 
    while((*list_pt) -> prev != (*list_pt)){
